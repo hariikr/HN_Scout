@@ -7,10 +7,11 @@ import { ErrorState } from '@/components/LoadingStates'
 interface PageProps {
   story: HNStory | null
   comments: HNComment[]
+  storyId: string
   error?: string
 }
 
-export default function ItemPage({ story, comments, error }: PageProps) {
+export default function ItemPage({ story, comments, storyId, error }: PageProps) {
   if (error || !story) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100">
@@ -31,7 +32,7 @@ export default function ItemPage({ story, comments, error }: PageProps) {
   const qualityScore = calculateQualityScore(story)
   const domain = extractDomain(story.url)
   const timeAgo = formatTimeAgo(story.created_at)
-  const hnUrl = `https://news.ycombinator.com/item?id=${story?.objectID || story?.id || storyId}`
+  const hnUrl = `https://news.ycombinator.com/item?id=${story.objectID || storyId}`
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100">
@@ -196,6 +197,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
       props: {
         story,
         comments,
+        storyId: id,
       },
     }
   } catch (error) {
@@ -205,6 +207,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
       props: {
         story: null,
         comments: [],
+        storyId: id,
         error: 'Failed to load story. Please try again later.',
       },
     }
