@@ -66,7 +66,7 @@ export default function StoriesPage({ stories, currentPage, totalPages, error }:
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isInfiniteScroll, isLoadingMore, currentLoadedPage, totalPages])
+  }, [isInfiniteScroll, isLoadingMore, currentLoadedPage, totalPages, loadMoreStories])
 
   // Reset stories when page prop changes
   useEffect(() => {

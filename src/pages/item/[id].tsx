@@ -69,6 +69,25 @@ export default function ItemPage({ story, comments, storyId, error }: PageProps)
     }
   }, [story])
 
+  // Calculate values with useMemo hooks (must be before conditional returns)
+  const qualityScore = useMemo(() => {
+    if (!story) return null;
+    // Trigger recalculation when currentTime changes
+    return calculateQualityScore(story);
+  }, [story, currentTime])
+  const domain = story ? extractDomain(story.url) : null
+  const timeAgo = useMemo(() => {
+    if (!story) return null;
+    // Trigger recalculation when currentTime changes
+    return formatTimeAgo(story.created_at);
+  }, [story?.created_at, currentTime])
+  const recencyStatus = useMemo(() => {
+    if (!story) return null;
+    // Trigger recalculation when currentTime changes
+    return getRecencyStatus(story);
+  }, [story, currentTime])
+  const hnUrl = `https://news.ycombinator.com/item?id=${story?.objectID || storyId}`
+
   if (error || !story) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100">
@@ -92,12 +111,6 @@ export default function ItemPage({ story, comments, storyId, error }: PageProps)
       </div>
     )
   }
-
-  const qualityScore = useMemo(() => calculateQualityScore(story), [story, currentTime])
-  const domain = extractDomain(story.url)
-  const timeAgo = useMemo(() => formatTimeAgo(story.created_at), [story.created_at, currentTime])
-  const recencyStatus = useMemo(() => getRecencyStatus(story), [story, currentTime])
-  const hnUrl = `https://news.ycombinator.com/item?id=${story.objectID || storyId}`
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100">
@@ -130,10 +143,10 @@ export default function ItemPage({ story, comments, storyId, error }: PageProps)
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3">
                   <span className="bg-blue-100 text-blue-700 text-sm font-medium px-3 py-1 rounded-full">
-                    Quality Score: {qualityScore.score}
+                    Quality Score: {qualityScore?.score || 0}
                   </span>
                   {/* Recency Status Badge */}
-                  {recencyStatus.status !== 'archive' && (
+                  {recencyStatus && recencyStatus.status !== 'archive' && (
                     <span 
                       className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${recencyStatus.color}`}
                       title={recencyStatus.description}
@@ -223,17 +236,17 @@ export default function ItemPage({ story, comments, storyId, error }: PageProps)
               
               <div className="flex items-center space-x-3 text-xs text-gray-500">
                 <span title="Points contribution" className="bg-gray-100 px-2 py-1 rounded">
-                  Points: {qualityScore.breakdown.points}
+                  Points: {qualityScore?.breakdown.points || 0}
                 </span>
                 <span title="Comments contribution" className="bg-gray-100 px-2 py-1 rounded">
-                  Comments: {qualityScore.breakdown.comments}
+                  Comments: {qualityScore?.breakdown.comments || 0}
                 </span>
                 <span 
-                  title={`Recency boost: ${recencyStatus.description}`}
-                  className={`px-2 py-1 rounded ${recencyStatus.status !== 'archive' ? 'bg-blue-100 text-blue-700 font-medium' : 'bg-gray-100'}`}
+                  title={`Recency boost: ${recencyStatus?.description || 'N/A'}`}
+                  className={`px-2 py-1 rounded ${recencyStatus && recencyStatus.status !== 'archive' ? 'bg-blue-100 text-blue-700 font-medium' : 'bg-gray-100'}`}
                 >
-                  Recency: {qualityScore.breakdown.recency}
-                  {(recencyStatus.status === 'hot' || recencyStatus.status === 'trending') && (
+                  Recency: {qualityScore?.breakdown.recency || 0}
+                  {recencyStatus && (recencyStatus.status === 'hot' || recencyStatus.status === 'trending') && (
                     <span className="ml-1 text-green-500" title="Live updating">●</span>
                   )}
                 </span>

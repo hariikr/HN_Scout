@@ -31,11 +31,20 @@ export function StoryCard({ story, index }: StoryCardProps) {
     return () => clearInterval(interval)
   }, [story.created_at])
   
-  // Recalculate these values when time updates
-  const qualityScore = useMemo(() => calculateQualityScore(story), [story, currentTime])
+  // Recalculate these values when time updates  
+  const qualityScore = useMemo(() => {
+    // Trigger recalculation when currentTime changes
+    return calculateQualityScore(story);
+  }, [story, currentTime])
   const domain = extractDomain(story.url)
-  const timeAgo = useMemo(() => formatTimeAgo(story.created_at), [story.created_at, currentTime])
-  const recencyStatus = useMemo(() => getRecencyStatus(story), [story, currentTime])
+  const timeAgo = useMemo(() => {
+    // Trigger recalculation when currentTime changes
+    return formatTimeAgo(story.created_at);
+  }, [story.created_at, currentTime])
+  const recencyStatus = useMemo(() => {
+    // Trigger recalculation when currentTime changes
+    return getRecencyStatus(story);
+  }, [story, currentTime])
 
   // Load comments when expanded
   const loadComments = async () => {
