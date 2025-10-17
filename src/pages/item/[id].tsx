@@ -31,7 +31,7 @@ export default function ItemPage({ story, comments, error }: PageProps) {
   const qualityScore = calculateQualityScore(story)
   const domain = extractDomain(story.url)
   const timeAgo = formatTimeAgo(story.created_at)
-  const hnUrl = `https://news.ycombinator.com/item?id=${story.objectID}`
+  const hnUrl = `https://news.ycombinator.com/item?id=${story?.objectID || story?.id || storyId}`
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100">
