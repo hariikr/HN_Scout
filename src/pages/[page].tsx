@@ -186,94 +186,149 @@ export default function StoriesPage({ stories, currentPage, totalPages, error }:
               </div>
             </nav>
             
-            {/* Page Info Card */}
-            <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl border border-white/20 shadow-xl p-6 mb-8">
-              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+            {/* Content Overview Dashboard */}
+            <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl p-8 mb-8">
+              {/* Header Stats */}
+              <div className="flex flex-col lg:flex-row items-center justify-between mb-6 pb-6 border-b border-slate-200">
+                <div className="flex items-center space-x-6 mb-4 lg:mb-0">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-slate-800 font-semibold text-lg">
+                        {isInfiniteScroll ? `${currentLoadedPage} of ${totalPages} Pages Loaded` : `Page ${currentPage} of ${totalPages}`}
+                      </div>
+                      <div className="text-slate-500 text-sm">Browse curated content</div>
+                    </div>
                   </div>
-                  <span className="text-slate-700 font-medium">
-                    {isInfiniteScroll ? `Loaded ${currentLoadedPage} of ${totalPages} pages` : `Page ${currentPage} of ${totalPages}`}
-                  </span>
                 </div>
                 
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <span className="text-slate-700 font-medium">Quality Sorted</span>
+                  <div>
+                    <div className="text-slate-800 font-semibold text-lg">Quality Sorted</div>
+                    <div className="text-slate-500 text-sm">Intelligent ranking system</div>
+                  </div>
                 </div>
               </div>
               
-              <div className="mt-4 pt-4 border-t border-slate-200">
-                <div className="text-xs text-slate-600 bg-slate-50 rounded-lg px-3 py-2 font-mono mb-2">
-                 
-                </div>
-                <div className="text-xs text-slate-500 space-y-1">
-                  <div className="flex items-center flex-wrap gap-x-4 gap-y-1">
-                    <span className="flex items-center">
-                      <span className="w-2 h-2 bg-red-100 border border-red-300 rounded-full mr-1"></span>
-                      🔥 HOT (0-2h): +60 boost
-                    </span>
-                    <span className="flex items-center">
-                      <span className="w-2 h-2 bg-orange-100 border border-orange-300 rounded-full mr-1"></span>
-                      📈 TRENDING (2-6h): +40 boost
-                    </span>
-                    <span className="flex items-center">
-                      <span className="w-2 h-2 bg-blue-100 border border-blue-300 rounded-full mr-1"></span>
-                      ⏰ RECENT (6-24h): Variable boost
-                    </span>
+              {/* Algorithm Legend */}
+              <div>
+                <h3 className="text-slate-800 font-semibold text-base mb-4 flex items-center">
+                  <span className="w-6 h-6 bg-gradient-to-br from-amber-400 to-amber-500 rounded-lg flex items-center justify-center mr-2">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
+                  Scoring Algorithm
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+                  <div className="flex items-center space-x-2 bg-red-50 rounded-xl px-4 py-3 border border-red-100">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <span className="font-medium text-red-800">🔥 HOT (0-2h)</span>
+                    <span className="text-red-600 font-semibold">+60 boost</span>
                   </div>
-                  <div className="flex items-center flex-wrap gap-x-4 gap-y-1">
-                    <span className="flex items-center">
-                      <span className="w-2 h-2 bg-purple-100 border border-purple-300 rounded-full mr-1"></span>
-                      🚀 VIRAL: 5000+ points legendary stories
-                    </span>
-                    <span className="flex items-center">
-                      <span className="w-2 h-2 bg-yellow-100 border border-yellow-300 rounded-full mr-1"></span>
-                      ⭐ CLASSIC: 1000+ points historical gems
-                    </span>
+                  <div className="flex items-center space-x-2 bg-orange-50 rounded-xl px-4 py-3 border border-orange-100">
+                    <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                    <span className="font-medium text-orange-800">📈 TRENDING (2-6h)</span>
+                    <span className="text-orange-600 font-semibold">+40 boost</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-blue-50 rounded-xl px-4 py-3 border border-blue-100">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-medium text-blue-800">⏰ RECENT (6-24h)</span>
+                    <span className="text-blue-600 font-semibold">Variable boost</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-purple-50 rounded-xl px-4 py-3 border border-purple-100">
+                    <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <span className="font-medium text-purple-800">🚀 VIRAL</span>
+                    <span className="text-purple-600 font-semibold">5000+ pts</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-yellow-50 rounded-xl px-4 py-3 border border-yellow-100">
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <span className="font-medium text-yellow-800">⭐ CLASSIC</span>
+                    <span className="text-yellow-600 font-semibold">1000+ pts</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-slate-50 rounded-xl px-4 py-3 border border-slate-100">
+                    <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
+                    <span className="font-medium text-slate-800">📊 STANDARD</span>
+                    <span className="text-slate-600 font-semibold">Base score</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Filter and Controls */}
-            <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl border border-white/20 shadow-xl p-6 mb-8">
-              <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+            {/* Advanced Filter Controls */}
+            <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl p-8 mb-8">
+              <div className="mb-6">
+                <h3 className="text-slate-800 font-semibold text-lg mb-2 flex items-center">
+                  <span className="w-6 h-6 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+                    </svg>
+                  </span>
+                  Content Discovery
+                </h3>
+                <p className="text-slate-600 text-sm">Filter and refine your story feed with intelligent search</p>
+              </div>
+              
+              <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-6">
                 <div className="flex-1 w-full">
-                  <input
-                    type="text"
-                    placeholder="Filter stories by domain or keyword... (e.g., github.com, AI, startup)"
-                    value={domainFilter}
-                    onChange={(e) => setDomainFilter(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/90 backdrop-blur-sm"
-                  />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Filter by domain, keyword, or topic... (e.g., github.com, AI, startup)"
+                      value={domainFilter}
+                      onChange={(e) => setDomainFilter(e.target.value)}
+                      className="w-full pl-12 pr-4 py-4 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/95 backdrop-blur-sm text-slate-700 placeholder-slate-400 font-medium shadow-inner"
+                    />
+                  </div>
                 </div>
                 
-                <div className="flex items-center space-x-4">
+                <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4">
                   {domainFilter && (
                     <button
                       onClick={() => setDomainFilter('')}
-                      className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm rounded-lg transition-colors"
+                      className="flex items-center space-x-2 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 text-sm rounded-xl transition-all duration-200 border border-red-200 font-medium shadow-sm hover:shadow-md"
                     >
-                      Clear Filter
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <span>Clear Filter</span>
                     </button>
                   )}
                   
-                  <label className="flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-lg">
-                    <input
-                      type="checkbox"
-                      checked={isInfiniteScroll}
-                      onChange={(e) => setIsInfiniteScroll(e.target.checked)}
-                      className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="text-sm text-blue-700 font-medium">Infinite Scroll</span>
+                  <label className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-5 py-3 rounded-xl border border-blue-200 cursor-pointer hover:from-blue-100 hover:to-indigo-100 transition-all duration-200 shadow-sm hover:shadow-md">
+                    <div className="relative">
+                      <input
+                        type="checkbox"
+                        checked={isInfiniteScroll}
+                        onChange={(e) => setIsInfiniteScroll(e.target.checked)}
+                        className="sr-only"
+                      />
+                      <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${isInfiniteScroll ? 'bg-blue-600 border-blue-600' : 'border-slate-300 bg-white'}`}>
+                        {isInfiniteScroll && (
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xl">∞</span>
+                      <span className="text-sm text-blue-800 font-semibold">Infinite Scroll</span>
+                    </div>
                   </label>
                 </div>
               </div>
