@@ -44,10 +44,10 @@ export default function StoriesPage({ stories, currentPage, totalPages, error }:
             <Link href="/" className="inline-block group">
               <div className="flex items-center justify-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <span className="text-2xl">🧭</span>
+                  <span className="text-2xl"></span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  HN Scout
+                 HN Scout
                 </h1>
               </div>
             </Link>
@@ -66,10 +66,10 @@ export default function StoriesPage({ stories, currentPage, totalPages, error }:
             <Link href="/" className="inline-block group">
               <div className="flex items-center justify-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <span className="text-2xl">🧭</span>
+                  <span className="text-2xl">👾</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  HN Scout
+                 👾HN Scout
                 </h1>
               </div>
             </Link>
@@ -89,10 +89,10 @@ export default function StoriesPage({ stories, currentPage, totalPages, error }:
             <Link href="/" className="inline-block group">
               <div className="flex items-center justify-center space-x-3 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <span className="text-2xl">🧭</span>
+                  <span className="text-2xl">👾</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  HN Scout
+                 👾HN Scout
                 </h1>
               </div>
             </Link>

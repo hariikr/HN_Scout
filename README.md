@@ -1,4 +1,4 @@
-# 🧭 HN Scout
+#👾HN Scout
 
 A creative, modern Hacker News explorer built with Next.js that surfaces the most engaging stories using a custom quality scoring algorithm.
 

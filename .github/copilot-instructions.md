@@ -1,4 +1,4 @@
-# HN Scout - Next.js Project Instructions
+#👾HN Scout - Next.js Project Instructions
 
 This project is a Hacker News explorer web application built with Next.js, featuring:
 - Server-side rendered paginated results using Hacker News Algolia API

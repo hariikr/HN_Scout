@@ -150,7 +150,7 @@ export default function HomePage() {
               <span>Built with Next.js & TypeScript</span>
             </div>
             <div className="flex items-center space-x-4">
-              <span>© 2025 HN Scout</span>
+              <span>© 2025👾HN Scout</span>
             </div>
           </div>
         </div>

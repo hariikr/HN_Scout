@@ -19,7 +19,7 @@ export default function ItemPage({ story, comments, storyId, error }: PageProps)
           <header className="text-center mb-8">
             <Link href="/" className="inline-block">
               <h1 className="text-3xl md:text-4xl font-bold text-orange-600 mb-2 hover:text-orange-700 transition-colors">
-                🧭 HN Scout
+               👾HN Scout
               </h1>
             </Link>
           </header>
@@ -40,7 +40,7 @@ export default function ItemPage({ story, comments, storyId, error }: PageProps)
         <header className="text-center mb-8">
           <Link href="/" className="inline-block">
             <h1 className="text-3xl md:text-4xl font-bold text-orange-600 mb-2 hover:text-orange-700 transition-colors">
-              🧭 HN Scout
+             👾HN Scout
             </h1>
           </Link>
           <nav className="text-sm text-gray-600">
