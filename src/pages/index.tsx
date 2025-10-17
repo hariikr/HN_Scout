@@ -2,19 +2,25 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      {/* Navigation Header */}
-      <nav className="border-b border-slate-200 bg-white/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30">
+      {/* Enhanced Navigation Header */}
+      <nav className="border-b border-white/20 bg-white/60 backdrop-blur-xl shadow-lg">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-sm font-bold">HN</span>
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-2xl">👾</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-20 animate-pulse"></div>
               </div>
-              <span className="text-xl font-semibold text-slate-900">Scout</span>
+              <div>
+                <span className="text-2xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">HN Scout</span>
+                <p className="text-xs text-slate-600 font-medium">Intelligence-Driven Discovery</p>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-slate-500">v1.0.0</span>
+              <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full"></span>
             </div>
           </div>
         </div>
@@ -109,35 +115,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Stats Section */}
-        <div className="bg-slate-900 rounded-2xl p-8 lg:p-12">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl lg:text-4xl font-bold text-white mb-2">
-                <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                  &lt;1s
-                </span>
-              </div>
-              <p className="text-slate-400">Average Response Time</p>
-            </div>
-            <div>
-              <div className="text-3xl lg:text-4xl font-bold text-white mb-2">
-                <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
-                  99.9%
-                </span>
-              </div>
-              <p className="text-slate-400">Uptime Reliability</p>
-            </div>
-            <div>
-              <div className="text-3xl lg:text-4xl font-bold text-white mb-2">
-                <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                  20+
-                </span>
-              </div>
-              <p className="text-slate-400">Stories Per Page</p>
-            </div>
-          </div>
-        </div>
       </main>
 
       {/* Footer */}

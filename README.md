@@ -1,53 +1,348 @@
-#👾HN Scout
+# 👾 HN Scout
 
-A creative, modern Hacker News explorer built with Next.js that surfaces the most engaging stories using a custom quality scoring algorithm.
+A next-generation Hacker News explorer built with Next.js that intelligently surfaces the most engaging stories using advanced quality scoring algorithms and real-time recency boosts.
 
-![HN Scout Demo](https://via.placeholder.com/800x400/ff6b35/ffffff?text=HN+Scout+Demo)
+![HN Scout](https://via.placeholder.com/1200x600/667eea/ffffff?text=👾+HN+Scout+-+Intelligence-Driven+News+Discovery)
 
-## ✨ Features
+## ✨ Key Features
 
-### 🎯 Core Functionality
-- **Server-Side Rendered Pagination**: Browse Hacker News stories with `/1`, `/2`, etc. URLs
-- **Custom Quality Scoring**: Intelligent algorithm that combines points, comments, and recency
-- **Detailed Story Pages**: Individual pages for each story with latest comments
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
+### 🎯 **Intelligence-Driven Discovery**
+- **Advanced Quality Scoring**: Multi-factor algorithm combining engagement, recency, and community metrics
+- **Real-Time Recency Boosts**: Dynamic scoring that adapts as stories age
+- **Smart Story Categorization**: Visual labels for HOT, TRENDING, VIRAL, and CLASSIC content
+- **Mixed Feed Algorithm**: Optimal blend of popular all-time classics and fresh trending content
 
-### 🚀 Enhanced UX
-- **Loading States**: Skeleton screens while content loads
-- **Error Handling**: Graceful error states with retry options
-- **Empty States**: Friendly messages for edge cases
-- **Keyboard Navigation**: Navigate with arrow keys, shortcuts
-- **Accessibility**: ARIA roles, focus management, screen reader support
+### 🚀 **Modern User Experience** 
+- **Server-Side Rendering**: Lightning-fast page loads with SEO optimization
+- **Live Score Updates**: Real-time quality score adjustments for recent stories
+- **Visual Story Status**: Color-coded badges showing story lifecycle and engagement level
+- **Reading List**: Personal bookmark system with local storage
+- **Infinite Scroll**: Optional seamless content loading
 
-### ⌨️ Keyboard Shortcuts
-- `←` or `H`: Previous page
-- `→` or `L`: Next page  
-- `Ctrl+G`: First page
-- `Ctrl+Shift+G`: Last page
-- `?`: Show help
+### 📱 **Responsive & Accessible**
+- **Mobile-First Design**: Optimized for all device sizes
+- **Keyboard Navigation**: Full keyboard support with intuitive shortcuts
+- **Loading Optimizations**: Smart loading states and error handling
+- **Accessibility**: WCAG compliant with ARIA support
 
-## 🧮 Quality Score Algorithm
+## 🧮 Advanced Quality Scoring Algorithm
 
-Our custom algorithm ranks stories based on three key factors:
+Our proprietary algorithm intelligently ranks stories using a sophisticated multi-tier system:
 
 ```javascript
 Score = (Points^0.8 × 2) + (Comments^0.6 × 1.5) + RecencyBoost
 ```
 
-### Algorithm Components
+### 📊 **Scoring Components**
 
-1. **Points Contribution** (`Points^0.8 × 2`)
-   - Uses diminishing returns to prevent outliers from dominating
-   - Square root scaling ensures balanced weighting across score ranges
-   - 2x multiplier gives points significant influence
+#### 1. **Points Contribution** `Points^0.8 × 2`
+- **Diminishing Returns**: Prevents single viral stories from dominating indefinitely
+- **Power Scaling**: `0.8` exponent balances influence across score ranges
+- **High Weight**: `2x` multiplier ensures upvotes remain primary ranking factor
 
-2. **Comments Contribution** (`Comments^0.6 × 1.5`) 
-   - Engagement indicator - more comments = more discussion
-   - Moderate power scaling to reward active discussions
-   - 1.5x multiplier balances with points contribution
+#### 2. **Comments Contribution** `Comments^0.6 × 1.5`
+- **Engagement Indicator**: Active discussions signal story quality and interest
+- **Moderate Scaling**: `0.6` exponent rewards discussion without over-weighting
+- **Balanced Weight**: `1.5x` multiplier complements points contribution
 
-3. **Recency Boost** (`50 × e^(-hours/24)`)
-   - Exponential decay over 48 hours promotes fresh content
+#### 3. **Enhanced Recency Boost System**
+Revolutionary multi-tier time decay that promotes fresh content:
+
+##### 🔥 **HOT** (0-2 hours): `+60 points`
+- Breaking news gets maximum visibility boost
+- Helps new stories compete with established viral content
+- Live updating every 30 seconds
+
+##### 📈 **TRENDING** (2-6 hours): `+40 points` 
+- Stories gaining momentum receive high boost
+- Captures the "trending now" zeitgeist
+- Live updating every 30 seconds
+
+##### ⏰ **RECENT** (6-24 hours): `40 × e^(-(hours-6)/12) + 10`
+- Exponential decay from 40 to 10 points
+- Balances recency with proven engagement
+- Updates every minute
+
+##### 📰 **AGING** (24-72 hours): `10 × (1 - (hours-24)/48)`
+- Linear decay from 10 to 0 points
+- Final recency consideration period
+- Updates every minute
+
+##### 🚀 **VIRAL** / ⭐ **CLASSIC** (72+ hours): Special Categories
+- **VIRAL**: 5000+ points OR 2000+ comments (legendary status)
+- **CLASSIC**: 1000+ points OR 500+ comments (historically significant)
+- **ARCHIVE**: Regular older content with no recency boost
+
+## 🎨 Visual Story Categories
+
+### Time-Based Categories (Recent Content)
+| Badge | Criteria | Boost | Description |
+|-------|----------|-------|-------------|
+| 🔥 **HOT** | 0-2 hours | +60 | Breaking news with maximum visibility |
+| 📈 **TRENDING** | 2-6 hours | +40 | Gaining momentum, high engagement |
+| ⏰ **RECENT** | 6-24 hours | Variable | Fresh daily content |
+| 📰 **AGING** | 1-3 days | Declining | Recent but aging content |
+
+### Engagement-Based Categories (Historical Content)
+| Badge | Criteria | Color | Description |
+|-------|----------|-------|-------------|
+| 🚀 **VIRAL** | 5000+ points OR 2000+ comments | Purple | Legendary viral stories |
+| ⭐ **CLASSIC** | 1000+ points OR 500+ comments | Yellow | Historical gems |
+| 📜 **ARCHIVE** | Regular older content | Gray | Standard archived content |
+
+## ⌨️ Keyboard Navigation
+
+| Shortcut | Action |
+|----------|---------|
+| `←` / `H` | Previous page |
+| `→` / `L` | Next page |
+| `Ctrl+G` | Jump to first page |
+| `Ctrl+Shift+G` | Jump to last page |
+| `?` | Show keyboard help |
+| `Escape` | Close modals/overlays |
+
+## 🏗️ Technical Architecture
+
+### **Frontend Stack**
+- **Next.js 15**: React framework with SSR and SSG
+- **TypeScript**: Full type safety and developer experience
+- **Tailwind CSS**: Utility-first styling with custom design system
+- **React Hooks**: Modern state management and effects
+
+### **Data Sources**
+- **Hacker News Algolia API**: Real-time story and comment data
+- **Mixed Feed Strategy**: 70% popular + 30% recent content
+- **Smart Caching**: 1-minute TTL with intelligent cache invalidation
+- **Error Resilience**: Timeout handling and graceful degradation
+
+### **Performance Features**
+- **Server-Side Rendering**: Fast initial page loads and SEO
+- **Smart Prefetching**: Intelligent resource loading
+- **Code Splitting**: Optimized bundle sizes
+- **Image Optimization**: Responsive images with Next.js
+
+## 📁 Project Structure
+
+```
+src/
+├── components/           # Reusable UI components
+│   ├── StoryCard.tsx    # Individual story display
+│   ├── Pagination.tsx   # Page navigation
+│   ├── KeyboardNav.tsx  # Keyboard shortcuts
+│   └── LoadingStates.tsx # Loading and error states
+├── pages/               # Next.js pages and API routes
+│   ├── index.tsx        # Homepage
+│   ├── [page].tsx       # Story listing pages (/1, /2, etc.)
+│   ├── item/[id].tsx    # Individual story pages
+│   ├── reading-list.tsx # Personal bookmarks
+│   └── api/stories.ts   # API proxy endpoints
+├── lib/                 # Core business logic
+│   └── hn-api.ts        # API client and scoring algorithms
+├── types/               # TypeScript definitions
+│   └── hn.ts           # Hacker News data types
+└── styles/             # Global styles
+    └── globals.css     # Tailwind and custom CSS
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/hn-scout.git
+   cd hn-scout
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. **Open in browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Build for Production
+
+```bash
+# Build the application
+npm run build
+
+# Start production server
+npm run start
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+Create a `.env.local` file in the project root:
+
+```env
+# Optional: Custom Hacker News API endpoint
+NEXT_PUBLIC_HN_API_BASE=https://hn.algolia.com/api/v1
+
+# Optional: Enable debug logging
+NEXT_PUBLIC_DEBUG=false
+```
+
+### Customization Options
+
+#### Quality Scoring Parameters
+Modify scoring weights in `src/lib/hn-api.ts`:
+
+```typescript
+// Points contribution multiplier (default: 2)
+const pointsScore = Math.pow(Math.max(story.points || 0, 1), 0.8) * 2
+
+// Comments contribution multiplier (default: 1.5)
+const commentsScore = Math.pow(Math.max(story.num_comments || 0, 1), 0.6) * 1.5
+
+// Recency boost values (default: 60, 40, etc.)
+const recencyScore = hoursAgo <= 2 ? 60 : 40 // Customize as needed
+```
+
+#### Story Categories Thresholds
+Adjust viral/classic thresholds in `getRecencyStatus()`:
+
+```typescript
+// Viral threshold (default: 5000 points OR 2000 comments)
+if (points >= 5000 || comments >= 2000) {
+  return { status: 'viral', ... }
+}
+
+// Classic threshold (default: 1000 points OR 500 comments)  
+if (points >= 1000 || comments >= 500) {
+  return { status: 'classic', ... }
+}
+```
+
+## 🔌 API Reference
+
+### Core Functions
+
+#### `searchStories(page, hitsPerPage)`
+Fetches and scores stories for a given page.
+
+```typescript
+const stories = await searchStories(1, 20)
+// Returns: { hits: HNStory[], page: number, nbPages: number, ... }
+```
+
+#### `calculateQualityScore(story)`
+Computes quality score for individual stories.
+
+```typescript
+const score = calculateQualityScore(story)
+// Returns: { score: number, breakdown: { points, comments, recency } }
+```
+
+#### `getRecencyStatus(story)`
+Determines story category and visual indicators.
+
+```typescript
+const status = getRecencyStatus(story)
+// Returns: { status, label, icon, color, description, priority }
+```
+
+## 🧪 Testing
+
+### Run Tests
+```bash
+# Unit tests
+npm run test
+
+# Test with coverage
+npm run test:coverage
+
+# End-to-end tests
+npm run test:e2e
+```
+
+### Manual Testing Checklist
+- [ ] Story listing pagination works correctly
+- [ ] Individual story pages load with comments
+- [ ] Reading list functionality (add/remove)
+- [ ] Keyboard navigation responsive
+- [ ] Mobile responsiveness across devices
+- [ ] Loading states display properly
+- [ ] Error handling for API failures
+
+## 📈 Performance Monitoring
+
+### Key Metrics
+- **First Contentful Paint**: Target <1.5s
+- **Largest Contentful Paint**: Target <2.5s  
+- **Time to Interactive**: Target <3.5s
+- **Cumulative Layout Shift**: Target <0.1
+
+### Optimization Features
+- Server-side rendering for instant content
+- Image optimization with Next.js
+- Code splitting and lazy loading
+- Efficient caching strategies
+- Minimal JavaScript bundles
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these guidelines:
+
+### Development Workflow
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes with proper TypeScript types
+4. Add tests for new functionality
+5. Run linting: `npm run lint`
+6. Commit with conventional commits: `git commit -m "feat: add amazing feature"`
+7. Push and create a pull request
+
+### Code Style
+- Use TypeScript for all new code
+- Follow existing component patterns
+- Add JSDoc comments for functions
+- Use Tailwind CSS for styling
+- Maintain accessibility standards
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Hacker News**: For the excellent community and API
+- **Algolia**: For the powerful search infrastructure  
+- **Next.js Team**: For the incredible React framework
+- **Tailwind CSS**: For the utility-first CSS framework
+- **Vercel**: For seamless deployment platform
+
+## 📞 Support
+
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/your-username/hn-scout/issues)
+- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/your-username/hn-scout/discussions)
+- 📧 **Email**: support@hnscout.dev
+- 💬 **Discord**: [Join our community](https://discord.gg/hnscout)
+
+---
+
+<div align="center">
+
+**👾 Built with intelligence, designed for discovery**
+
+[🌟 Star on GitHub](https://github.com/your-username/hn-scout) • [🚀 Live Demo](https://hnscout.vercel.app) • [📖 Documentation](https://docs.hnscout.dev)
+
+</div>
    - Starts at 50 points for newest stories
    - Gradually decreases to prioritize recent discussions
 
